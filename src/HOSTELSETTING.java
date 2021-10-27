@@ -23,6 +23,7 @@ import javax.swing.JPasswordField;
 
 public class HOSTELSETTING  extends javax.swing.JFrame{
 
+	protected static final boolean False = false;
 	public JFrame frmAllStudentLiving;
 	private JLabel flRegestration;
 	private JTextField fldFname;
@@ -40,6 +41,7 @@ public class HOSTELSETTING  extends javax.swing.JFrame{
 	private JTextField textField_1;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
+	protected JFrame frmLogin;
 
 	/**
 	 * Launch the application.
@@ -95,6 +97,7 @@ public class HOSTELSETTING  extends javax.swing.JFrame{
 		frmAllStudentLiving.getContentPane().add(flRegestration);
 		
 		JButton btnSalary = new JButton("Search");
+		
 		btnSalary.addActionListener(object->{
 			 try {
 				Search();
@@ -217,6 +220,7 @@ public class HOSTELSETTING  extends javax.swing.JFrame{
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
+					isValidPassword("String password");
 					smartinsert();
 					JOptionPane.showMessageDialog(null,"Succefull Registration");
 					Connection conn= Connector.getConnection();
@@ -316,18 +320,30 @@ public class HOSTELSETTING  extends javax.swing.JFrame{
 		Connection conn;
 		PreparedStatement pst;
 		try {
-			conn = Connector.getConnection();
-		String sql ="insert into users (username,password,role,firstName,lastName,DateOfBirth,Email)values(?,?,?,?,?,?,?)";
-		  String password = Confirm(passwordField.getText(),passwordField_1.getText());
-		pst =conn.prepareStatement(sql);
-		pst.setString(1, fldUname.getText());
-		pst.setString(2, password);
-		pst.setString(3, "");
-		pst.setString(4, fldFname.getText());
-		pst.setString(5, fldLname.getText());
-		pst.setString(6, fldDBT.getText());
-		pst.setString(7, fldemail.getText());
-		pst.execute();
+			conn=Connector.getConnection();
+			String sql1= "select * from users where username=? and password=?";
+			pst= conn.prepareStatement(sql1);
+			ResultSet rs = pst.executeQuery();
+			String user=fldUname.getText();
+			if(rs.next()) {
+//				
+				if(rs.getString('1').equals(user) || rs.getString('2').equals(password)); 
+				JOptionPane.showMessageDialog(null, "Username and password are already used!!!","" +"\n"+ "Try again please!.", getDefaultCloseOperation() );
+			}else {
+				conn = Connector.getConnection();
+				String sql ="insert into users (username,password,role,firstName,lastName,DateOfBirth,Email)values(?,?,?,?,?,?,?)";
+				  String password = Confirm(passwordField.getText(),passwordField_1.getText());
+				pst =conn.prepareStatement(sql);
+				pst.setString(1, fldUname.getText());
+				pst.setString(2, password);
+				pst.setString(3, "");
+				pst.setString(4, fldFname.getText());
+				pst.setString(5, fldLname.getText());
+				pst.setString(6, fldDBT.getText());
+				pst.setString(7, fldemail.getText());
+				pst.execute();
+			}
+		
 //		JOptionPane.showMessageDialog(null, "Succefull inserted!!");
 	
 		}catch(Exception e) {
@@ -354,24 +370,65 @@ private void clear()
 	fldDBT.setText("");
 }private void Search() throws Exception, ClassNotFoundException {
 	Connection conn;
-	Statement st;
+	
 	try {
 		conn = Connector.getConnection();
-		st = conn.createStatement();
+
 		String user = textField.getText();
-		ResultSet rs = st.executeQuery("select * from users where id = "+user);
-		while(rs.next()) {
-			fldFname.setText(rs.getString(5));
-			fldLname.setText(rs.getString(6));
-			passwordField.setText(rs.getString(3));
-			fldUname.setText(rs.getString(2));
-			fldDBT.setText(rs.getString(7));
-			fldemail.setText(rs.getString(8));	
-		}
+		String sql="Select * from users where username= " + user;
 		
+		PreparedStatement pst;
+		pst=conn.prepareStatement(sql);
+
+		ResultSet rs=pst.executeQuery();
+		pst.setString(1,fldFname.getText());
+		while(rs.next()) {
+			fldUname.setText(rs.getString(1));
+			passwordField.setText(rs.getString(2));
+			fldFname.setText(rs.getString(4));
+			fldLname.setText(rs.getString(5));
+			fldDBT.setText(rs.getString(6));
+			fldemail.setText(rs.getString(7));	
+		}		
+	
 	}catch(Exception e) {
 		e.printStackTrace();
 	}
+	
+}
+public  boolean isValidPassword(String password) throws SQLException, ClassNotFoundException {
+	boolean isValid= true;
+	if(password.length()>15 || password.length()<8)
+	{
+//   JOptionPane.showInputDialog(password);
+   JOptionPane.showMessageDialog(null, "password must be less than 20 and more than 8 characters in lenght.");
+   isValid= false;
+	}
+	String upperCaseChars ="(.*[A-Z])";
+	if (!password.matches(upperCaseChars))
+	{
+	JOptionPane.showMessageDialog(null, "Password must have atleast one uppercase charcter!");
+	isValid =False;
+	}
+	String lowerCaseChars ="(.*[a-z].*)";
+	if (!password.matches(lowerCaseChars))
+	{
+	JOptionPane.showMessageDialog(null, "Password must have atleast one lowerCaseChars charcter!");
+	isValid =False;
+	}
+	String numbers ="(.*[0-9].*)";
+	if (!password.matches(numbers))
+	{
+	JOptionPane.showMessageDialog(null, "Password must have atleast one numbers charcter!");
+	isValid =False;
+	}
+	String specialChars ="(.*[@,#,$,%].*$)";
+	if (!password.matches(specialChars))
+	{
+	JOptionPane.showMessageDialog(null, "Password must have atleast one special charcter!");
+	isValid =False;
+	}
+	return isValid=true;
 	
 }
 }

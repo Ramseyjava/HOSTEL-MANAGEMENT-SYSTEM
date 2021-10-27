@@ -94,7 +94,7 @@ public class UpdateDelectEmployee {
 		BtnStatus.setBounds(12, 373, 153, 35);
 		update.getContentPane().add(BtnStatus);
 		
-		JButton btnLogout = new JButton("LogOut");
+		JButton btnLogout = new JButton("Exit");
 		btnLogout.setForeground(Color.WHITE);
 		btnLogout.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnLogout.setBackground(Color.RED);

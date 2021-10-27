@@ -121,6 +121,10 @@ public class STUDENTDETAILS {
 		lblNewLabel.setBounds(39, 12, 95, 33);
 		frmLeavedStudent.getContentPane().add(lblNewLabel);
 		
+		JButton btnExit = new JButton("EXIT");
+		btnExit.setBounds(544, 0, 106, 45);
+		frmLeavedStudent.getContentPane().add(btnExit);
+		
 		
 	}
 

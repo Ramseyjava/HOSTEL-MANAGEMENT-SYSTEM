@@ -49,7 +49,7 @@ public class updateStudent {
 		frmUpdateAndDelete.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUpdateAndDelete.getContentPane().setLayout(null);
 		
-		JButton btnExit = new JButton("LogOut");
+		JButton btnExit = new JButton("Exit");
 		btnExit.setBackground(Color.RED);
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -62,7 +62,7 @@ public class updateStudent {
 				DC.show();
 			}
 		});
-		btnExit.setBounds(608, 0, 100, 30);
+		btnExit.setBounds(618, 0, 90, 30);
 		frmUpdateAndDelete.getContentPane().add(btnExit);
 		
 		JButton btnMobile = new JButton("Mobile No");

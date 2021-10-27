@@ -24,7 +24,7 @@ import java.awt.Font;
 //import java.beans.PropertyChangeEvent;
    public class HOME {
 
-	private JFrame frmLogin;
+	public JFrame frmLogin;
 	private JTextField textField;
 	public Connection conn;
 	public PreparedStatement ps;
@@ -108,14 +108,14 @@ protected void Get_Connection() throws SQLException {
 				 DASHBOARD ds=new DASHBOARD();
 				 ds.lblNewLabel_1.setText("WELCOME ADMIN "+textField.getText().toUpperCase());
 				 ds.show();
-//				 if(role==admin) {
-////					 DASHBOARD ds=new DASHBOARD();
-////					 ds.show();
-//					 
-//				 }
-//				 else {
-//				JOptionPane.showMessageDialog(null, "you are an admin");
-//				 }
+				 if(role.contentEquals(admin)) {
+					 DASHBOARD dss=new DASHBOARD();
+					 dss.show();
+					 
+				 }
+				 else {
+				JOptionPane.showMessageDialog(null, "you are an admin");
+				 }
 		 }
 		 
 		else {
@@ -134,7 +134,7 @@ protected void Get_Connection() throws SQLException {
 		frmLogin.setTitle("LOGIN");
 		
 		
-		frmLogin.getContentPane().setBackground(Color.ORANGE);
+//		frmLogin.getContentPane().setBackground(Color.NONE);
 		frmLogin.setBackground(Color.PINK);
 		frmLogin.setBounds(100, 100, 450, 450);
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -174,7 +174,7 @@ protected void Get_Connection() throws SQLException {
 		btnLogin.setForeground(Color.WHITE);
 		btnLogin.setBackground(Color.RED);
 		btnLogin.setFont(new Font("DialogInput", Font.BOLD | Font.ITALIC, 17));
-		btnLogin.setBounds(156, 284, 134, 53);
+		btnLogin.setBounds(166, 282, 134, 53);
 		btnLogin.addActionListener(object->{
 			try {
 				Check();
@@ -198,10 +198,12 @@ protected void Get_Connection() throws SQLException {
 		passwordField.setBounds(115, 163, 236, 39);
 		frmLogin.getContentPane().add(passwordField);
 		
-		lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("/home/ramsey/eclipse-workspace/HOSTLE MANAGEMENT SYSTEM/HOSTEL MANAGEMENT SYSTEM/icons/home.png"));
-		lblNewLabel.setBounds(46, 12, 379, 396);
-		frmLogin.getContentPane().add(lblNewLabel);
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setIcon(new ImageIcon("/home/ramsey/eclipse-workspace/HOSTLE MANAGEMENT SYSTEM/HOSTEL MANAGEMENT SYSTEM/icons/login.jpg"));
+		lblNewLabel_1.setBounds(-124, 12, 562, 396);
+		lblNewLabel_1.setVisible(true);
+		frmLogin.getContentPane().add(lblNewLabel_1);
+		lblNewLabel_1.setVisible(true);
 		
 		
 	}

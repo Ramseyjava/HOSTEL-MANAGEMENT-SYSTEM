@@ -102,22 +102,30 @@ public class ManageRoom {
 				Connection con;
 				PreparedStatement pst;
 				try{
-					
 					con=Connector.getConnection();
-					String sql="insert into manage_room (room_no,RoomStatus,activate) values(?,?,?)";
-					pst=con.prepareStatement(sql);
-					pst.setString(1,room_no);
-					pst.setString(2, RoomStatus );
-					pst.setString(3, activate);
+					String sql1="select * from manage_room where room_no=?";
+					pst=con.prepareStatement(sql1);
+					ResultSet rs = pst.executeQuery();
+					if(rs.next()) {
+						if(rs.getString('1').equals(JTextRoom.getText()));
+						{
+							JOptionPane.showMessageDialog(null, "Room_NO already exit in the System"+"\n"+"Please try Again!");
+						} 
+							
+					}else {
+						{
+							String sql="insert into manage_room values(?,?)";
+							PreparedStatement ps= con.prepareStatement(sql);
+							while(rs.next())
+							{
+								ps.setString(1, room_no);
+								ps.setString(2, RoomStatus);
+								ps.setString(3, activate);
+								ps.executeUpdate();
+							}
+						}
+					}
 					
-					int i=pst.executeUpdate();
-					if(i>0) {
-						JOptionPane.showMessageDialog(null, "succefull inserted!");
-						
-					}
-					else {
-						JOptionPane.showMessageDialog(null, "error");
-					}
 				}catch(SQLException | ClassNotFoundException e) {
 					System.out.println("Error" + e);
 				}
@@ -129,7 +137,7 @@ public class ManageRoom {
 		btnSave.setBounds(548, 73, 85, 25);
 		frmManageRoom.getContentPane().add(btnSave);
 		
-		JButton btnExit = new JButton("LogOut");
+		JButton btnExit = new JButton("");
 		btnExit.setBackground(Color.RED);
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -140,11 +148,12 @@ public class ManageRoom {
 				}
 			}
 		});
-		btnExit.setBounds(573, 7, 104, 44);
+		btnExit.setBounds(599, 7, 104, 44);
 		frmManageRoom.getContentPane().add(btnExit);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(12, 106, 679, 15);
+		separator.setBackground(Color.YELLOW);
+		separator.setBounds(12, 106, 679, 20);
 		frmManageRoom.getContentPane().add(separator);
 		
 		JLabel lblUpdateDelete = new JLabel("UPDATE & DELETE ROOM");
@@ -275,7 +284,8 @@ public class ManageRoom {
 		frmManageRoom.getContentPane().add(btnDelete);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(12, 223, 679, 15);
+		separator_1.setBackground(Color.BLUE);
+		separator_1.setBounds(12, 223, 679, 20);
 		frmManageRoom.getContentPane().add(separator_1);
 		
 		JLabel lblAllRooms = new JLabel("ALL ROOMS");

@@ -66,7 +66,7 @@ public class EmployeePayment {
 		String currentDate = dateString+"/" +monthString+"/"+yearString;
 		
 		
-		JButton btnExit = new JButton("LOGOUT");
+		JButton btnExit = new JButton("EXICT");
 		btnExit.setBackground(Color.RED);
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

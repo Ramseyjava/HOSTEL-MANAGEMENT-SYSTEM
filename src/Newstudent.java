@@ -16,6 +16,8 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JRadioButton;
+import javax.swing.JLabel;
 
 public class Newstudent {
 
@@ -33,6 +35,7 @@ public class Newstudent {
 	String item ;
     int id;
     int id1;
+    String Gender;
 	JComboBox<?> comboBox;
 	/**
 	 * Create the application.
@@ -51,7 +54,7 @@ public class Newstudent {
 		frame2.getContentPane().setForeground(Color.BLUE);
 		frame2.setFont(new Font("eufm10", Font.BOLD | Font.ITALIC, 22));
 		frame2.setTitle("NEW STUDENT");
-		frame2.setBounds(200, 200, 571, 590);
+		frame2.setBounds(200, 200, 600, 650);
 		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame2.getContentPane().setLayout(null);
 		
@@ -61,62 +64,33 @@ public class Newstudent {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton.setBounds(12, 17, 138, 27);
+		btnNewButton.setBounds(12, 21, 138, 35);
 		frame2.getContentPane().add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("StudentName");
-		btnNewButton_1.setFont(new Font("Liberation Sans Narrow", Font.BOLD | Font.ITALIC, 18));
-		btnNewButton_1.setBounds(12, 63, 138, 27);
-		frame2.getContentPane().add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("ParentName");
-		btnNewButton_2.setFont(new Font("Liberation Sans Narrow", Font.BOLD | Font.ITALIC, 18));
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnNewButton_2.setBounds(12, 118, 138, 27);
-		frame2.getContentPane().add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("Email Address");
-		btnNewButton_3.setFont(new Font("cmmi10", Font.BOLD | Font.ITALIC, 15));
-		btnNewButton_3.setBounds(12, 168, 138, 27);
-		frame2.getContentPane().add(btnNewButton_3);
-		
-		JButton btnNewButton_4 = new JButton("Student Id");
-		btnNewButton_4.setFont(new Font("DejaVu Math TeX Gyre", Font.BOLD | Font.ITALIC, 14));
-		btnNewButton_4.setBounds(12, 219, 138, 27);
-		frame2.getContentPane().add(btnNewButton_4);
-		
-		JButton btnNewButton_5 = new JButton("Room No.");
-		btnNewButton_5.setFont(new Font("Liberation Sans Narrow", Font.BOLD, 17));
-		btnNewButton_5.setBounds(12, 267, 138, 23);
-		frame2.getContentPane().add(btnNewButton_5);
 		
 		mobile = new JTextField();
 		mobile.setBackground(Color.MAGENTA);
-		mobile.setBounds(205, 21, 220, 26);
+		mobile.setBounds(205, 21, 285, 35);
 		frame2.getContentPane().add(mobile);
 		mobile.setColumns(10);
 		
 		student = new JTextField();
 		student.setColumns(10);
-		student.setBounds(205, 67, 220, 26);
+		student.setBounds(250, 67, 257, 30);
 		frame2.getContentPane().add(student);
 		
 		parentname = new JTextField();
 		parentname.setColumns(10);
-		parentname.setBounds(205, 122, 220, 26);
+		parentname.setBounds(250, 113, 257, 30);
 		frame2.getContentPane().add(parentname);
 		
 		email = new JTextField();
 		email.setColumns(10);
-		email.setBounds(205, 172, 220, 26);
+		email.setBounds(250, 166, 257, 30);
 		frame2.getContentPane().add(email);
 		
 		idnumber = new JTextField();
 		idnumber.setColumns(10);
-		idnumber.setBounds(205, 223, 220, 26);
+		idnumber.setBounds(250, 216, 257, 30);
 		frame2.getContentPane().add(idnumber);
 		
 		JButton btnNewButton_6 = new JButton("Save");
@@ -135,7 +109,7 @@ public class Newstudent {
 			}
 		});
 		btnNewButton_6.setFont(new Font("DejaVu Serif Condensed", Font.BOLD | Font.ITALIC, 20));
-		btnNewButton_6.setBounds(192, 487, 117, 35);
+		btnNewButton_6.setBounds(244, 550, 117, 35);
 	
 		frame2.getContentPane().add(btnNewButton_6);
 		
@@ -155,10 +129,10 @@ public class Newstudent {
 			}
 		});
 		btnDelect.setFont(new Font("eufm10", Font.BOLD | Font.ITALIC, 20));
-		btnDelect.setBounds(344, 489, 117, 35);
+		btnDelect.setBounds(390, 552, 117, 35);
 		frame2.getContentPane().add(btnDelect);
 		
-		JButton btnExit = new JButton("LogOut");
+		JButton btnExit = new JButton("EXIT");
 		btnExit.setForeground(Color.CYAN);
 		btnExit.setBackground(Color.RED);
 		btnExit.addMouseListener(new MouseAdapter() {
@@ -180,48 +154,29 @@ public class Newstudent {
 				DC.show();
 			}
 		});
-		btnExit.setBounds(437, 0, 122, 48);
+		btnExit.setBounds(513, 0, 87, 48);
 		frame2.getContentPane().add(btnExit);
 		
 		room = new JTextField();
-		room.setBounds(205, 269, 220, 26);
+		room.setBounds(250, 267, 257, 30);
 		frame2.getContentPane().add(room);
 		room.setColumns(10);
 		
-		JButton btnNewButton_5_1 = new JButton("ADM No");
-		btnNewButton_5_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnNewButton_5_1.setFont(new Font("Liberation Sans Narrow", Font.BOLD | Font.ITALIC, 22));
-		btnNewButton_5_1.setBounds(12, 315, 138, 32);
-		frame2.getContentPane().add(btnNewButton_5_1);
-		
 		admno = new JTextField();
 		admno.setColumns(10);
-		admno.setBounds(205, 323, 220, 26);
+		admno.setBounds(250, 326, 257, 30);
 		frame2.getContentPane().add(admno);
-		
-		JButton btnNewButton_5_1_1 = new JButton("Year");
-		btnNewButton_5_1_1.setFont(new Font("eufm10", Font.BOLD | Font.ITALIC, 22));
-		btnNewButton_5_1_1.setBounds(12, 368, 138, 32);
-		frame2.getContentPane().add(btnNewButton_5_1_1);
 		
 //		Date date = (Date)getDate().
 		
 		year = new JTextField();
 		year.setColumns(10);
-		year.setBounds(205, 368, 220, 26);
+		year.setBounds(250, 368, 257, 30);
 		frame2.getContentPane().add(year);
-		
-		JButton btnstatus = new JButton("LivingStatus");
-		btnstatus.setFont(new Font("DejaVu Serif Condensed", Font.BOLD | Font.ITALIC, 16));
-		btnstatus.setBounds(12, 422, 138, 35);
-		frame2.getContentPane().add(btnstatus);
 		
 		comboBox = new JComboBox(status);
 		comboBox.setBackground(Color.MAGENTA);
-		comboBox.setBounds(215, 415, 233, 32);
+		comboBox.setBounds(250, 417, 257, 32);
 		comboBox.addItemListener((args)->{
 		id = comboBox.getSelectedIndex();
 	     switch(id) {
@@ -235,6 +190,61 @@ public class Newstudent {
 	     }
 		});
 		frame2.getContentPane().add(comboBox);
+		
+
+		JLabel Gender = new JLabel("Gender");
+		Gender.setFont(new Font("Dialog", Font.BOLD, 23));
+		Gender.setBackground(Color.MAGENTA);
+		Gender.setBounds(12, 469, 138, 36);
+		frame2.getContentPane().add(Gender);
+		
+		JLabel Gender_1 = new JLabel("lIVING STATUS");
+		Gender_1.setFont(new Font("Dialog", Font.BOLD, 23));
+		Gender_1.setBackground(Color.MAGENTA);
+		Gender_1.setBounds(12, 412, 193, 36);
+		frame2.getContentPane().add(Gender_1);
+		
+		JLabel Gender_2 = new JLabel("Year");
+		Gender_2.setFont(new Font("Dialog", Font.BOLD, 23));
+		Gender_2.setBackground(Color.MAGENTA);
+		Gender_2.setBounds(12, 358, 138, 36);
+		frame2.getContentPane().add(Gender_2);
+		
+		JLabel Gender_3 = new JLabel("ADM No");
+		Gender_3.setFont(new Font("Dialog", Font.BOLD, 23));
+		Gender_3.setBackground(Color.MAGENTA);
+		Gender_3.setBounds(12, 321, 138, 36);
+		frame2.getContentPane().add(Gender_3);
+		
+		JLabel Gender_4 = new JLabel("ROOM No");
+		Gender_4.setFont(new Font("Dialog", Font.BOLD, 23));
+		Gender_4.setBackground(Color.MAGENTA);
+		Gender_4.setBounds(12, 258, 138, 36);
+		frame2.getContentPane().add(Gender_4);
+		
+		JLabel Gender_5 = new JLabel("STUDENT ID");
+		Gender_5.setFont(new Font("Dialog", Font.BOLD, 23));
+		Gender_5.setBackground(Color.MAGENTA);
+		Gender_5.setBounds(12, 207, 193, 36);
+		frame2.getContentPane().add(Gender_5);
+		
+		JLabel Gender_6 = new JLabel("Email Address");
+		Gender_6.setFont(new Font("Dialog", Font.BOLD, 23));
+		Gender_6.setBackground(Color.MAGENTA);
+		Gender_6.setBounds(12, 157, 200, 36);
+		frame2.getContentPane().add(Gender_6);
+		
+		JLabel Gender_7 = new JLabel("PARENT NAME");
+		Gender_7.setFont(new Font("Dialog", Font.BOLD, 23));
+		Gender_7.setBackground(Color.MAGENTA);
+		Gender_7.setBounds(12, 104, 193, 36);
+		frame2.getContentPane().add(Gender_7);
+		
+		JLabel Gender_8 = new JLabel("STUDENT NAME");
+		Gender_8.setFont(new Font("Dialog", Font.BOLD, 23));
+		Gender_8.setBackground(Color.MAGENTA);
+		Gender_8.setBounds(12, 56, 220, 36);
+		frame2.getContentPane().add(Gender_8);
 		frame2.setVisible(true);
 	}
 	private void Insert() throws SQLException, ClassNotFoundException {
@@ -243,7 +253,7 @@ public class Newstudent {
 		PreparedStatement ps;
 		try {
 			conn = Connector.getConnection();
-		String sql = "insert into Students (mobile,studentname,parent,email,idno,roomno,year,status) values(?,?,?,?,?,?,?,?)";
+		String sql = "insert into Students (mobile,studentname,parent,email,idno,roomno,year,status,Gender) values(?,?,?,?,?,?,?,?,?)";
 		ps = conn.prepareStatement(sql);
 		ps.setInt(1, Integer.parseInt(mobile.getText()));
 		ps.setString(2, student.getText());
@@ -253,6 +263,7 @@ public class Newstudent {
 		ps.setInt(6, Integer.parseInt(room.getText()));
 		ps.setString(7, year.getText());
 		ps.setString(8, comboBox.getItemAt(id)+"");
+		ps.setString(9, Gender);
 		int i =ps.executeUpdate();
 		if(i>0) {
 			JOptionPane.showMessageDialog(null, "succefull inserted!");
